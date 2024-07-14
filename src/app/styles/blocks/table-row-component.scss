@@ -1,0 +1,27 @@
+.table-row-component {
+  background-color: var(--primary-gray);
+
+  &_selected {
+    background-color: var(--primary-yellow);
+  }
+
+  &__td {
+    padding: 12px;
+    height: 48px;
+
+    &_checkbox {
+      width: 48px;
+    }
+
+    &_buttons {
+      max-width: 160px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}

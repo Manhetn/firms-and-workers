@@ -1,0 +1,28 @@
+.button {
+  border: transparent;
+  padding: 4px;
+  border-radius: 8px;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &_red {
+    background-color: var(--primary-red);
+  }
+
+  &_size48 {
+    height: 48px;
+    width: 48px;
+  }
+
+  &width48 {
+    width: 48px;
+  }
+}
