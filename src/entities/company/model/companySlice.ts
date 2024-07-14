@@ -30,6 +30,9 @@ const companySlice = createSlice({
     addCompany(state, action: PayloadAction<ICompanyData>) {
       state.companies.push(action.payload);
     },
+    addCompanies(state, action: PayloadAction<ICompanyData[]>) {
+      state.companies = [...state.companies, ...action.payload];
+    },
     toggleSelectCompany(state, action: PayloadAction<string>) {
       if (state.selectedCompanies.includes(action.payload)) {
         state.selectedCompanies = state.selectedCompanies.filter((id) => id !== action.payload);
@@ -77,6 +80,7 @@ export const {
   selectAllCompanies,
   changeCompany,
   updateEmployeeCount,
+  addCompanies,
 } = actions;
 
 export default companyReducer;

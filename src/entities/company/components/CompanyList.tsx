@@ -1,17 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import {
-  // getCompanies,
-  // getSelectedCompanies,
-  // laodCompanies,
-  selectAllCompanies,
-  toggleSelectCompany,
-} from '../model/companySlice';
+import { selectAllCompanies, toggleSelectCompany } from '../model/companySlice';
 import MemoizedCompanyRow from './CompanyRow';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import AddCompanyComponent from '../../../features/AddCompany/ui/AddCompanyComponent';
 import { getCompanies, getCompaniesCounter, getSelectedCompanies, laodCompanies } from '../model/selectors';
 import RemoveCompaniesButton from '../../../features/RemoveCompanies/ui/RemoveCompaniesButton';
+import { useInView } from 'react-intersection-observer';
 
 interface ICompanyListProps {
   additionalClasses?: string | null;
@@ -21,9 +16,12 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   const dispatch = useAppDispatch();
   const companies = useAppSelector(getCompanies());
   const selectedCompanies = useAppSelector(getSelectedCompanies());
-  const loader = useRef(null);
+
   const companiesCounter = useAppSelector(getCompaniesCounter());
   const [page, setPage] = useState(0);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   const companyListBlockClasses = `table-component${additionalClasses ? ` ${additionalClasses}` : ''}`;
 
@@ -37,40 +35,18 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   }, []);
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 1.0,
-    };
-
-    const observer = new IntersectionObserver((entities) => {
-      if (entities[0].isIntersecting) {
-        console.log('yyyyy');
-        const nextPage = page + 1;
-        dispatch(laodCompanies(nextPage));
-        setPage(nextPage);
-      }
-    }, options);
-
-    if (loader.current) {
-      observer.observe(loader.current);
+    if (inView) {
+      const nextPage = page + 1;
+      dispatch(laodCompanies(nextPage));
+      setPage(nextPage);
     }
-
-    return () => {
-      if (loader.current) {
-        observer.unobserve(loader.current);
-      }
-    };
-  }, [loader.current]);
+  }, [inView]);
 
   useEffect(() => {
     if (companies.length === 0) {
       dispatch(laodCompanies(page));
     }
   }, [companies.length, dispatch]);
-
-  console.log(companiesCounter);
-  console.log(companies.length);
 
   return (
     <div className={companyListBlockClasses}>
@@ -108,10 +84,9 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
         </tbody>
       </table>
       {companiesCounter > companies.length && (
-        <div
-          ref={loader}
-          style={{ height: '20px', backgroundColor: 'transparent' }}
-        />
+        <div ref={ref}>
+          <h2>Загрузка новых данных...</h2>
+        </div>
       )}
     </div>
   );

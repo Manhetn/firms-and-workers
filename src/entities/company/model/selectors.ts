@@ -2,14 +2,22 @@ import FakeApiService from '../../../app/Services/FakeApiServise';
 import { AppDispatch, RootState } from '../../../app/store';
 import { removeCompaniesEmployees } from '../../employee/model/employeeSlice';
 import { ICompanyData } from '../types';
-import { addCompany, changeCompany, removeCompanies, setCompanies, setCompaniesCounter } from './companySlice';
+import {
+  addCompanies,
+  addCompany,
+  changeCompany,
+  removeCompanies,
+  setCompanies,
+  setCompaniesCounter,
+} from './companySlice';
 
 export const laodCompanies =
   (currentPage: number = 0) =>
   (dispatch: AppDispatch) => {
     const resData = FakeApiService.getCompanies(currentPage);
+    console.log('ya srabotal');
 
-    dispatch(setCompanies(resData.companies));
+    dispatch(addCompanies(resData.companies));
     dispatch(setCompaniesCounter(resData.countCompanies));
   };
 
