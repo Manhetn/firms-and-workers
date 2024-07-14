@@ -2,14 +2,18 @@ import FakeApiService from '../../../app/Services/FakeApiServise';
 import { AppDispatch, RootState } from '../../../app/store';
 import { removeCompaniesEmployees } from '../../employee/model/employeeSlice';
 import { ICompanyData } from '../types';
-import { addCompany, changeCompany, removeCompanies, setCompanies } from './companySlice';
+import { addCompany, changeCompany, removeCompanies, setCompanies, setCompaniesCounter } from './companySlice';
 
-export const laodCompanies = () => (dispatch: AppDispatch, getState: () => RootState) => {
-  const state = getState();
-  const companies = FakeApiService.getCompanies(state.companies.currentPage);
+export const laodCompanies =
+  (currentPage: number = 0) =>
+  (dispatch: AppDispatch) => {
+    const resData = FakeApiService.getCompanies(currentPage);
 
-  dispatch(setCompanies(companies));
-};
+    dispatch(setCompanies(resData.companies));
+    dispatch(setCompaniesCounter(resData.countCompanies));
+  };
+
+export const getCompaniesCounter = () => (state: RootState) => state.companies.companiesCounter;
 
 export const getCompanies = () => (state: RootState) => state.companies.companies;
 

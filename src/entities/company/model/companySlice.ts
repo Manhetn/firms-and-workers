@@ -5,19 +5,22 @@ import { INewEmploeesCountData } from '../../../shared/types';
 export interface CompanyState {
   companies: ICompanyData[];
   selectedCompanies: string[];
-  currentPage: number;
+  companiesCounter: number;
 }
 
 const initialState: CompanyState = {
   companies: [],
   selectedCompanies: [],
-  currentPage: 0,
+  companiesCounter: 0,
 };
 
 const companySlice = createSlice({
   name: 'companies',
   initialState,
   reducers: {
+    setCompaniesCounter(state, action: PayloadAction<number>) {
+      state.companiesCounter = action.payload;
+    },
     setCompanies(state, action: PayloadAction<ICompanyData[]>) {
       state.companies = action.payload;
     },
@@ -66,6 +69,7 @@ const companySlice = createSlice({
 const { reducer: companyReducer, actions } = companySlice;
 
 export const {
+  setCompaniesCounter,
   setCompanies,
   addCompany,
   removeCompanies,
