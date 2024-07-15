@@ -1,15 +1,16 @@
-import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
-import TextField from '../../../shared/components/TextField/TextField';
 import React, { useMemo, useState } from 'react';
-import Button from '../../../shared/components/Button/Button';
-import { nanoid } from 'nanoid';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from '../../../app/hooks';
+import useAppDispatch from '../../../app/hooks/useAppDispatch';
 import { getCompanies } from '../../../entities/company/model/selectors';
-import SelectComponent from '../../../shared/components/SelectField/SelectField';
 import { IEmployee } from '../../../entities/employee/types';
+import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
 import { ValidationObject } from '../../../shared/types';
-import ValidationService from '../../../app/services/ValidationService';
+import TextField from '../../../shared/components/TextField';
+import SelectField from '../../../shared/components/SelectField';
+import Button from '../../../shared/components/Button';
 import { addEmployeeThunk } from '../../../entities/employee/model/selectors';
+import { nanoid } from 'nanoid';
+import ValidationService from '../../../app/services/ValidationService';
 
 interface IAddEmployeePopupProps extends Omit<IPopupProps, 'children'> {}
 
@@ -77,7 +78,7 @@ const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({ visible, handleClo
         handleClose();
         resetForm();
       }}>
-      <SelectComponent
+      <SelectField
         optionsData={companiesArra}
         selectedOptionValue={emploee.companyId}
         error={emploeeValidation.companyId.error}

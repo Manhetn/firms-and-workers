@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddCompanyPopup from './AddCompanyPopup';
-import Button from '../../../shared/components/Button/Button';
 import { IconPlus } from '../../../shared/components/Icons';
+import Button from '../../../shared/components/Button';
 
 const AddCompanyComponent: React.FC = () => {
   const [showAddCompanyPopup, setShowAddCompanyPopup] = useState(false);

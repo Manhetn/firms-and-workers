@@ -1,6 +1,5 @@
-import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
-import TextField from '../../../shared/components/TextField/TextField';
 import React, { useState } from 'react';
+
 import Button from '../../../shared/components/Button/Button';
 import { nanoid } from 'nanoid';
 import { useAppDispatch } from '../../../app/hooks';
@@ -8,6 +7,8 @@ import { ICompanyData } from '../../../entities/company/types';
 import { addNewCompany } from '../../../entities/company/model/selectors';
 import { ValidationObject } from '../../../shared/types';
 import ValidationService from '../../../app/services/ValidationService';
+import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
+import TextField from '../../../shared/components/TextField';
 
 interface IAddCompanyPopupProps extends Omit<IPopupProps, 'children'> {}
 
