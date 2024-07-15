@@ -1,4 +1,4 @@
-import FakeApiService from '../../../app/Services/FakeApiServise';
+import FakeApiService from '../../../app/services/FakeApiServise';
 import { AppDispatch, RootState } from '../../../app/store';
 import { updateEmployeeCount } from '../../company/model/companySlice';
 import { IEmployee } from '../types';

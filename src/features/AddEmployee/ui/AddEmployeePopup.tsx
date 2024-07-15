@@ -1,14 +1,14 @@
-import Popup, { IPopupProps } from '../../../shared/components/Popup';
+import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
 import TextField from '../../../shared/components/TextField/TextField';
 import React, { useMemo, useState } from 'react';
-import Button from '../../../shared/components/Button';
+import Button from '../../../shared/components/Button/Button';
 import { nanoid } from 'nanoid';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getCompanies } from '../../../entities/company/model/selectors';
 import SelectComponent from '../../../shared/components/SelectField/SelectField';
 import { IEmployee } from '../../../entities/employee/types';
 import { ValidationObject } from '../../../shared/types';
-import ValidationService from '../../../app/Services/ValidationService';
+import ValidationService from '../../../app/services/ValidationService';
 import { addEmployeeThunk } from '../../../entities/employee/model/selectors';
 
 interface IAddEmployeePopupProps extends Omit<IPopupProps, 'children'> {}

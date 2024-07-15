@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ICompanyData } from '../types';
 import EditCompanyComponent from '../../../features/EditCompany/ui/EditCompanyComponent';
-import Checkbox from '../../../shared/components/Checkbox/Checkbox';
+import Checkbox from '../../../shared/components/Checkbox';
 
 interface ICompanyRowProps {
   company: ICompanyData;

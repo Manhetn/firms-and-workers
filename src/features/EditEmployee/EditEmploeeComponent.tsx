@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../../shared/components/Button';
+import Button from '../../shared/components/Button/Button';
 import { IEmployee } from '../../entities/employee/types';
 import { IconEdit } from '../../shared/components/Icons';
 import EditEmployeePopup from './EditEmployeePopup';

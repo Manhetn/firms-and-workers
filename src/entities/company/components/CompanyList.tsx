@@ -7,7 +7,7 @@ import AddCompanyComponent from '../../../features/AddCompany/ui/AddCompanyCompo
 import { getCompanies, getCompaniesCounter, getSelectedCompanies, laodCompanies } from '../model/selectors';
 import RemoveCompaniesButton from '../../../features/RemoveCompanies/ui/RemoveCompaniesButton';
 import { useInView } from 'react-intersection-observer';
-import Checkbox from '../../../shared/components/Checkbox/Checkbox';
+import Checkbox from '../../../shared/components/Checkbox';
 
 interface ICompanyListProps {
   additionalClasses?: string | null;

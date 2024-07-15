@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { IEmployee } from '../../entities/employee/types';
-import Popup, { IPopupProps } from '../../shared/components/Popup';
+import Popup, { IPopupProps } from '../../shared/components/Popup/Popup';
 import { useAppDispatch } from '../../app/hooks';
 import TextField from '../../shared/components/TextField/TextField';
-import Button from '../../shared/components/Button';
+import Button from '../../shared/components/Button/Button';
 import { makeEditEmployeeData } from '../../entities/employee/model/selectors';
 import { ValidationObject } from '../../shared/types';
-import ValidationService from '../../app/Services/ValidationService';
+import ValidationService from '../../app/services/ValidationService';
 
 interface IEditEmployeePopupProps extends Omit<IPopupProps, 'children'> {
   currentEmployee: IEmployee;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../shared/components/Button';
+import Button from '../../../shared/components/Button/Button';
 import { IconTrash } from '../../../shared/components/Icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getSelectedCompanies, removeCompaniesThunk } from '../../../entities/company/model/selectors';

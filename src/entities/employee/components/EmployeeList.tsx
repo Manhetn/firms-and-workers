@@ -6,7 +6,7 @@ import { getEmployees, getSelectedEmployees, laodEmployees } from '../model/sele
 import { getSelectedCompanies } from '../../company/model/selectors';
 import RemoveEmployeesButton from '../../../features/RemoveEmployees/ui/RemoveEmployeesButton';
 import AddEmployeeComponent from '../../../features/AddEmployee/ui/AddEmployeeComponent';
-import Checkbox from '../../../shared/components/Checkbox/Checkbox';
+import Checkbox from '../../../shared/components/Checkbox';
 
 const EmployeeList: React.FC = () => {
   const dispatch = useAppDispatch();

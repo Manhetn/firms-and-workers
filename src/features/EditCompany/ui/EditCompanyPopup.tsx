@@ -1,12 +1,12 @@
-import Popup, { IPopupProps } from '../../../shared/components/Popup';
+import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
 import TextField from '../../../shared/components/TextField/TextField';
 import React, { useState } from 'react';
-import Button from '../../../shared/components/Button';
+import Button from '../../../shared/components/Button/Button';
 import { useAppDispatch } from '../../../app/hooks';
 import { ICompanyData } from '../../../entities/company/types';
 import { makeChangingCompanyData } from '../../../entities/company/model/selectors';
 import { ValidationObject } from '../../../shared/types';
-import ValidationService from '../../../app/Services/ValidationService';
+import ValidationService from '../../../app/services/ValidationService';
 
 interface IEditCompanyPopupProps extends Omit<IPopupProps, 'children'> {
   currentCompany: ICompanyData;

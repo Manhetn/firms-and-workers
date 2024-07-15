@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AddCompanyPopup from './AddCompanyPopup';
-import Button from '../../../shared/components/Button';
+import Button from '../../../shared/components/Button/Button';
 import { IconPlus } from '../../../shared/components/Icons';
 
 const AddCompanyComponent: React.FC = () => {

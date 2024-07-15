@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import EditCompanyPopup from './EditCompanyPopup';
 import { ICompanyData } from '../../../entities/company/types';
-import Button from '../../../shared/components/Button';
+import Button from '../../../shared/components/Button/Button';
 import { IconEdit } from '../../../shared/components/Icons';
 
 interface IEditCompanyComponentProps {
