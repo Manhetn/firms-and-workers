@@ -12,12 +12,11 @@ interface Props {
 
 const EmployeeRow: React.FC<Props> = ({ employee, isSelected, handleSelect }) => {
   const [showEditEmployeePopup, setShowEditEmployeePopup] = useState(false);
-  const styles = `table-component__tbody-row ${isSelected ? ' table-component__tbody-row_selected' : ''}`;
-  // console.log(employee);
+  const styleClasses = `table-component__tbody-row ${isSelected ? ' table-component__tbody-row_selected' : ''}`;
 
   return (
     <>
-      <tr className={styles}>
+      <tr className={styleClasses}>
         <td className='table-component__tbody-td table-component__tbody-td_checkbox'>
           <input
             type='checkbox'

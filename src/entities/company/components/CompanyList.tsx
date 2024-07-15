@@ -18,7 +18,7 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   const selectedCompanies = useAppSelector(getSelectedCompanies());
 
   const companiesCounter = useAppSelector(getCompaniesCounter());
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -36,15 +36,14 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
 
   useEffect(() => {
     if (inView) {
-      const nextPage = page + 1;
-      dispatch(laodCompanies(nextPage));
-      setPage(nextPage);
+      dispatch(laodCompanies(page));
+      setPage((prev) => prev + 1);
     }
   }, [inView]);
 
   useEffect(() => {
     if (companies.length === 0) {
-      dispatch(laodCompanies(page));
+      dispatch(laodCompanies());
     }
   }, [companies.length, dispatch]);
 

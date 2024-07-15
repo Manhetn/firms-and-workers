@@ -2,8 +2,6 @@ import React, { useEffect, useMemo } from 'react';
 import { selectAllEmployees, toggleSelectEmployee } from '../model/employeeSlice';
 import EmployeeRow from './EmployeeRow';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-// import { getSelectedCompanies } from '../../company/model/companySlice';
-// import RemoveCompaniesButton from '../../../features/RemoveCompanies/ui/RemoveCompaniesButton/RemoveCompaniesButton';
 import { getEmployees, getSelectedEmployees, laodEmployees } from '../model/selectors';
 import { getSelectedCompanies } from '../../company/model/selectors';
 import RemoveEmployeesButton from '../../../features/RemoveEmployees/ui/RemoveEmployeesButton';
@@ -34,8 +32,6 @@ const EmployeeList: React.FC = () => {
       dispatch(laodEmployees());
     }
   }, []);
-
-  // console.log('employees', employees.length);
 
   return (
     <div className='table-component'>
@@ -76,10 +72,6 @@ const EmployeeList: React.FC = () => {
           })}
         </tbody>
       </table>
-      {/* <AddCompanyPopup
-        visible={showAddCompanyPopup}
-        handleClose={() => setShowAddCompanyPopup(false)}
-      /> */}
     </div>
   );
 };

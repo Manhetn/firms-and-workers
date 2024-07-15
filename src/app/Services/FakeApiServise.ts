@@ -409,12 +409,18 @@ const fakeEmployees: IEmployee[] = [
 
 const numberOfPages = 10;
 
-const getCompanies = (page: number = 0): { countCompanies: number; companies: ICompanyData[] } => {
+const getCompanies = (page: number = 0): Promise<any> => {
   const startIndex = page * numberOfPages;
   const countCompanies = fakeCompanies.length;
   const companies = fakeCompanies.slice(startIndex, startIndex + numberOfPages);
 
-  return { countCompanies, companies };
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ countCompanies, companies });
+    }, 1000);
+  });
+
+  return promise;
 };
 
 const getEmployees = () => {

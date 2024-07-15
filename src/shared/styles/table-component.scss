@@ -4,17 +4,13 @@
   height: calc(100vh - 32px);
   overflow: auto;
 
-  &__thead {
-  }
-
   &__thead-tr {
     background-color: var(--primary-blue);
-    position: sticky; /* Закрепляем заголовок при прокрутке */
-    top: 0; /* Располагаем заголовок вверху контейнера */
+    position: sticky;
+    top: 0;
   }
 
   &__thead-th {
-    // height: 48px;
     padding: 12px;
 
     &_checkbox {
@@ -36,13 +32,6 @@
     width: 100%;
   }
 
-  // &__thead-th {
-  //   &_buttons {
-  //     // max-width: 160px;
-  //     width: fit-content;
-  //   }
-  // }
-
   &__thead-buttons {
     display: flex;
     flex-direction: column;
@@ -53,29 +42,16 @@
     background-color: var(--secondary-blue);
   }
 
-  &__tbody {
-    // height: 100%;
-    // height: calc(100% - 48px);
-    // overflow-y: auto;
-  }
-
   &__tbody-row {
     background-color: var(--primary-gray);
 
     &_selected {
       background-color: var(--primary-yellow);
     }
-
-    // &_buttons {
-    //   display: flex;
-    //   gap: 10px;
-    //   justify-content: center;
-    //   align-items: center;
-    // }
   }
 
   &__tbody-td {
-    padding: 12px;
+    padding: 8px;
     height: 48px;
 
     &_checkbox {
@@ -84,7 +60,6 @@
 
     &_buttons {
       width: fit-content;
-      // max-width: 160px;
     }
   }
 }

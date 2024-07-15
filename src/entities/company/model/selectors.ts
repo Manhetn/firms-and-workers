@@ -2,20 +2,12 @@ import FakeApiService from '../../../app/Services/FakeApiServise';
 import { AppDispatch, RootState } from '../../../app/store';
 import { removeCompaniesEmployees } from '../../employee/model/employeeSlice';
 import { ICompanyData } from '../types';
-import {
-  addCompanies,
-  addCompany,
-  changeCompany,
-  removeCompanies,
-  setCompanies,
-  setCompaniesCounter,
-} from './companySlice';
+import { addCompanies, addCompany, changeCompany, removeCompanies, setCompaniesCounter } from './companySlice';
 
 export const laodCompanies =
   (currentPage: number = 0) =>
-  (dispatch: AppDispatch) => {
-    const resData = FakeApiService.getCompanies(currentPage);
-    console.log('ya srabotal');
+  async (dispatch: AppDispatch) => {
+    const resData = await FakeApiService.getCompanies(currentPage);
 
     dispatch(addCompanies(resData.companies));
     dispatch(setCompaniesCounter(resData.countCompanies));
@@ -49,6 +41,9 @@ export const deleteSelectedCompanies = (selectedCompaniesArray: string[]) => (di
 };
 
 export const removeCompaniesThunk = (selectedCompanies: string[]) => (dispatch: AppDispatch) => {
+  /**
+   * here is the logic of accessing the server and all that
+   */
   dispatch(removeCompanies(selectedCompanies));
   dispatch(removeCompaniesEmployees(selectedCompanies));
 };

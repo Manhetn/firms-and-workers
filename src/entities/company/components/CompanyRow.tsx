@@ -10,10 +10,10 @@ interface ICompanyRowProps {
 }
 
 const CompanyRow: React.FC<ICompanyRowProps> = ({ company, isSelected, onSelect }) => {
-  const styleClass = `table-component__tbody-row ${isSelected ? ' table-component__tbody-row_selected' : ''}`;
+  const styleClasses = `table-component__tbody-row ${isSelected ? ' table-component__tbody-row_selected' : ''}`;
 
   return (
-    <tr className={styleClass}>
+    <tr className={styleClasses}>
       <td className='table-component__tbody-td table-component__tbody-td_checkbox'>
         <Checkbox
           checked={isSelected}

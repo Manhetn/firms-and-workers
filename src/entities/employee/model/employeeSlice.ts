@@ -1,10 +1,6 @@
 // import { useState } from 'react';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { AppDispatch, RootState } from '../../../app/store';
-// import { RootState } from '@reduxjs/toolkit/query';
-// import FakeApiService from '../../../app/Services/FakeApiServise';
 import { IEmployee } from '../types';
-// import { updateEmployeeCount } from '../../company/model/companySlice';
 
 export interface Employee {
   id: string;

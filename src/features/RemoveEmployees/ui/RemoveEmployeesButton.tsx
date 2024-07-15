@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
-// import { removeEmployees } from '../../../entities/employee/model/employeeSlice';
 import Button from '../../../shared/components/Button';
 import { IconTrash } from '../../../shared/components/Icons';
 import { removeCompniesEmployeesThunk } from '../../../entities/employee/model/selectors';
