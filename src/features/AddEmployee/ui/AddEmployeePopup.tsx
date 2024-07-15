@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getCompanies } from '../../../entities/company/model/selectors';
 import SelectComponent from '../../../shared/components/SelectField/SelectField';
 import { IEmployee } from '../../../entities/employee/types';
-import { IValidateResult } from '../../../shared/types';
+import { ValidationObject } from '../../../shared/types';
 import ValidationService from '../../../app/Services/ValidationService';
 import { addEmployeeThunk } from '../../../entities/employee/model/selectors';
 
@@ -16,6 +16,7 @@ interface IAddEmployeePopupProps extends Omit<IPopupProps, 'children'> {}
 interface INewEmployeeData extends Omit<IEmployee, 'id'> {}
 
 const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({ visible, handleClose }) => {
+  const dispatch = useAppDispatch();
   const companies = useAppSelector(getCompanies());
   const [emploee, setEmploee] = useState<INewEmployeeData>({
     companyId: '',
@@ -23,14 +24,13 @@ const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({ visible, handleClo
     firstName: '',
     position: '',
   });
-  const [emploeeValidation, setEmploeeValidation] = useState<Record<string, IValidateResult>>({
+  const [emploeeValidation, setEmploeeValidation] = useState<ValidationObject>({
     companyId: { isValid: false, error: null },
     lastName: { isValid: false, error: null },
     firstName: { isValid: false, error: null },
     position: { isValid: false, error: null },
   });
-
-  const dispatch = useAppDispatch();
+  const isInvalidForm = Object.values(emploeeValidation).some((field) => !field.isValid);
 
   const resetForm = () => {
     setEmploee({
@@ -80,6 +80,7 @@ const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({ visible, handleClo
       <SelectComponent
         optionsData={companiesArra}
         selectedOptionValue={emploee.companyId}
+        error={emploeeValidation.companyId.error}
         handleChange={(value) => {
           setEmploee((prev) => ({ ...prev, companyId: value }));
           setEmploeeValidation((prev) => ({ ...prev, companyId: ValidationService.validateField(value) }));
@@ -112,7 +113,11 @@ const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({ visible, handleClo
           setEmploeeValidation((prev) => ({ ...prev, position: ValidationService.validateField(value) }));
         }}
       />
-      <Button onClick={handleAddCompany}>Добавить работника</Button>
+      <Button
+        disabled={isInvalidForm}
+        onClick={handleAddCompany}>
+        Добавить работника
+      </Button>
     </Popup>
   );
 };

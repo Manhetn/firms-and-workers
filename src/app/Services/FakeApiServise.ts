@@ -414,8 +414,12 @@ const getCompanies = (page: number = 0): Promise<any> => {
   const countCompanies = fakeCompanies.length;
   const companies = fakeCompanies.slice(startIndex, startIndex + numberOfPages);
 
+  let timer: number | null = null;
+
   const promise = new Promise((resolve) => {
-    setTimeout(() => {
+    if (timer) clearTimeout(timer);
+
+    timer = setTimeout(() => {
       resolve({ countCompanies, companies });
     }, 1000);
   });

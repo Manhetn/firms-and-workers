@@ -9,6 +9,10 @@
     color: var(--primary-black);
   }
 
+  &__error {
+    color: var(--secondary-red);
+  }
+
   &__input {
     margin: 0 auto;
     border: 1px solid var(--primary-black);

@@ -6,6 +6,7 @@ interface ISelectComponentProps {
   label?: string | null;
   optionsData: { value: string; label: string }[];
   selectedOptionValue: string;
+  error?: string | null;
   handleChange: (value: string) => void;
 }
 
@@ -14,6 +15,7 @@ const SelectComponent: React.FC<ISelectComponentProps> = ({
   optionsData,
   selectedOptionValue,
   handleChange,
+  error = null,
 }) => {
   const options = useMemo(() => {
     return (
@@ -43,6 +45,7 @@ const SelectComponent: React.FC<ISelectComponentProps> = ({
         onChange={handleSelectChange}>
         {options}
       </select>
+      {error && <span className='select-field__error'>{error}</span>}
     </div>
   );
 };

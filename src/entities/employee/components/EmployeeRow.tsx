@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import Button from '../../../shared/components/Button';
-import { IconEdit } from '../../../shared/components/Icons';
-import EditEmployeePopup from '../../../features/EditEmployee/EditEmployeePopup';
+import React from 'react';
 import { IEmployee } from '../types';
+import EditEmploeeComponent from '../../../features/EditEmployee/EditEmploeeComponent';
 
 interface Props {
   employee: IEmployee;
@@ -11,7 +9,6 @@ interface Props {
 }
 
 const EmployeeRow: React.FC<Props> = ({ employee, isSelected, handleSelect }) => {
-  const [showEditEmployeePopup, setShowEditEmployeePopup] = useState(false);
   const styleClasses = `table-component__tbody-row ${isSelected ? ' table-component__tbody-row_selected' : ''}`;
 
   return (
@@ -29,17 +26,10 @@ const EmployeeRow: React.FC<Props> = ({ employee, isSelected, handleSelect }) =>
         <td className='table-component__tbody-td'>{employee.position}</td>
         <td className='table-component__tbody-td table-component__tbody-td_buttons'>
           <div className='table-component__tbody-td_buttons'>
-            <Button onClick={() => setShowEditEmployeePopup(true)}>
-              <IconEdit />
-            </Button>
+            <EditEmploeeComponent employee={employee} />
           </div>
         </td>
       </tr>
-      <EditEmployeePopup
-        visible={showEditEmployeePopup}
-        currentEmployee={employee}
-        handleClose={() => setShowEditEmployeePopup(false)}
-      />
     </>
   );
 };

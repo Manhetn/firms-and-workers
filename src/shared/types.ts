@@ -7,3 +7,5 @@ export interface INewEmploeesCountData {
   companyId: string;
   count: number;
 }
+
+export type ValidationObject = Record<string, IValidateResult>;

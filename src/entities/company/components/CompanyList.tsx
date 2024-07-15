@@ -7,6 +7,7 @@ import AddCompanyComponent from '../../../features/AddCompany/ui/AddCompanyCompo
 import { getCompanies, getCompaniesCounter, getSelectedCompanies, laodCompanies } from '../model/selectors';
 import RemoveCompaniesButton from '../../../features/RemoveCompanies/ui/RemoveCompaniesButton';
 import { useInView } from 'react-intersection-observer';
+import Checkbox from '../../../shared/components/Checkbox/Checkbox';
 
 interface ICompanyListProps {
   additionalClasses?: string | null;
@@ -18,7 +19,7 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   const selectedCompanies = useAppSelector(getSelectedCompanies());
 
   const companiesCounter = useAppSelector(getCompaniesCounter());
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -30,7 +31,6 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   };
 
   const handleSelect = useCallback((companyId: string) => {
-    console.log(companyId);
     dispatch(toggleSelectCompany(companyId));
   }, []);
 
@@ -42,10 +42,9 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   }, [inView]);
 
   useEffect(() => {
-    if (companies.length === 0) {
-      dispatch(laodCompanies());
-    }
-  }, [companies.length, dispatch]);
+    dispatch(laodCompanies(page));
+    setPage((prev) => prev + 1);
+  }, []);
 
   return (
     <div className={companyListBlockClasses}>
@@ -54,10 +53,10 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
         <thead className='table-component__thead'>
           <tr className='table-component__thead-tr'>
             <th className='table-component__thead-th table-component__thead-th_checkbox'>
-              <input
-                type='checkbox'
-                onChange={handleSelectAll}
-                checked={selectedCompanies.length === companies.length}
+              <Checkbox
+                disabled={selectedCompanies.length === 0}
+                checked={selectedCompanies.length > 0 && selectedCompanies.length === companies.length}
+                handleChange={handleSelectAll}
               />
             </th>
             <th className='table-component__thead-th'>Название компании</th>

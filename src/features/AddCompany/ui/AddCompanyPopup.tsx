@@ -6,6 +6,8 @@ import { nanoid } from 'nanoid';
 import { useAppDispatch } from '../../../app/hooks';
 import { ICompanyData } from '../../../entities/company/types';
 import { addNewCompany } from '../../../entities/company/model/selectors';
+import { ValidationObject } from '../../../shared/types';
+import ValidationService from '../../../app/Services/ValidationService';
 
 interface IAddCompanyPopupProps extends Omit<IPopupProps, 'children'> {}
 
@@ -13,10 +15,20 @@ type TNewCompanyData = Pick<ICompanyData, 'name' | 'address'>;
 
 const AddCompanyPopup: React.FC<IAddCompanyPopupProps> = ({ visible, handleClose }) => {
   const [company, setNewCompany] = useState<TNewCompanyData>({ name: '', address: '' });
+  const [companyValidation, setCompanyValidation] = useState<ValidationObject>({
+    name: { isValid: false, error: null },
+    address: { isValid: false, error: null },
+  });
+  const isInvalidForm = Object.values(companyValidation).some((field) => !field.isValid);
+
   const dispatch = useAppDispatch();
 
   const resetForm = () => {
     setNewCompany({ name: '', address: '' });
+    setCompanyValidation({
+      name: { isValid: false, error: null },
+      address: { isValid: false, error: null },
+    });
   };
 
   const handleAddCompany = () => {
@@ -27,7 +39,6 @@ const AddCompanyPopup: React.FC<IAddCompanyPopupProps> = ({ visible, handleClose
       address: company.address,
     };
     resetForm();
-
     dispatch(addNewCompany(newCompany));
     handleClose();
   };
@@ -42,18 +53,26 @@ const AddCompanyPopup: React.FC<IAddCompanyPopupProps> = ({ visible, handleClose
       <TextField
         label={'Название компании'}
         value={company.name}
+        error={companyValidation.name.error}
         handleChange={(value) => {
           setNewCompany((prev) => ({ ...prev, name: value }));
+          setCompanyValidation((prev) => ({ ...prev, name: ValidationService.validateField(value) }));
         }}
       />
       <TextField
         label={'Адрес'}
         value={company.address}
+        error={companyValidation.address.error}
         handleChange={(value) => {
           setNewCompany((prev) => ({ ...prev, address: value }));
+          setCompanyValidation((prev) => ({ ...prev, address: ValidationService.validateField(value) }));
         }}
       />
-      <Button onClick={handleAddCompany}>Добавить компанию</Button>
+      <Button
+        disabled={isInvalidForm}
+        onClick={handleAddCompany}>
+        Добавить компанию
+      </Button>
     </Popup>
   );
 };
