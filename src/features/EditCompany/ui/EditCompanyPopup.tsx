@@ -1,5 +1,5 @@
 import Popup, { IPopupProps } from '../../../shared/components/Popup';
-import TextField from '../../../shared/components/TextField';
+import TextField from '../../../shared/components/TextField/TextField';
 import React, { useState } from 'react';
 import Button from '../../../shared/components/Button';
 import { useAppDispatch } from '../../../app/hooks';

@@ -10,7 +10,7 @@ interface ISelectComponentProps {
   handleChange: (value: string) => void;
 }
 
-const SelectComponent: React.FC<ISelectComponentProps> = ({
+const SelectField: React.FC<ISelectComponentProps> = ({
   label,
   optionsData,
   selectedOptionValue,
@@ -50,4 +50,4 @@ const SelectComponent: React.FC<ISelectComponentProps> = ({
   );
 };
 
-export default SelectComponent;
+export default SelectField;

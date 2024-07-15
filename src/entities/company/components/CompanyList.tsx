@@ -17,7 +17,6 @@ const CompanyList: React.FC<ICompanyListProps> = ({ additionalClasses = null }) 
   const dispatch = useAppDispatch();
   const companies = useAppSelector(getCompanies());
   const selectedCompanies = useAppSelector(getSelectedCompanies());
-
   const companiesCounter = useAppSelector(getCompaniesCounter());
   const [page, setPage] = useState(0);
   const { ref, inView } = useInView({

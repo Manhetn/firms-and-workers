@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { IEmployee } from '../../entities/employee/types';
 import Popup, { IPopupProps } from '../../shared/components/Popup';
 import { useAppDispatch } from '../../app/hooks';
-import TextField from '../../shared/components/TextField';
+import TextField from '../../shared/components/TextField/TextField';
 import Button from '../../shared/components/Button';
 import { makeEditEmployeeData } from '../../entities/employee/model/selectors';
 import { ValidationObject } from '../../shared/types';
