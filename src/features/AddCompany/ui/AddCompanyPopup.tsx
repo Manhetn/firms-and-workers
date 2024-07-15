@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../app/hooks';
 import { ICompanyData } from '../../../entities/company/types';
 import { addNewCompany } from '../../../entities/company/model/selectors';
 import { ValidationObject } from '../../../shared/types';
-import ValidationService from '../../../app/services/ValidationService';
+import ValidationService from '../../../app/Services/ValidationService';
 import Popup, { IPopupProps } from '../../../shared/components/Popup/Popup';
 import TextField from '../../../shared/components/TextField';
 

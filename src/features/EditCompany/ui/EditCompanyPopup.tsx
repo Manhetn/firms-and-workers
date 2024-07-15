@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../app/hooks';
 import { makeChangingCompanyData } from '../../../entities/company/model/selectors';
 import TextField from '../../../shared/components/TextField';
 import Button from '../../../shared/components/Button';
-import ValidationService from '../../../app/services/ValidationService';
+import ValidationService from '../../../app/Services/ValidationService';
 
 interface IEditCompanyPopupProps extends Omit<IPopupProps, 'children'> {
   currentCompany: ICompanyData;

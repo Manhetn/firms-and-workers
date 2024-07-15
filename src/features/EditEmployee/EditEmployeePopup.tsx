@@ -6,7 +6,7 @@ import TextField from '../../shared/components/TextField/TextField';
 import Button from '../../shared/components/Button/Button';
 import { makeEditEmployeeData } from '../../entities/employee/model/selectors';
 import { ValidationObject } from '../../shared/types';
-import ValidationService from '../../app/services/ValidationService';
+import ValidationService from '../../app/Services/ValidationService';
 
 interface IEditEmployeePopupProps extends Omit<IPopupProps, 'children'> {
   currentEmployee: IEmployee;

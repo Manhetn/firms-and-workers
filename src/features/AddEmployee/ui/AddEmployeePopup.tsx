@@ -10,7 +10,7 @@ import SelectField from '../../../shared/components/SelectField';
 import Button from '../../../shared/components/Button';
 import { addEmployeeThunk } from '../../../entities/employee/model/selectors';
 import { nanoid } from 'nanoid';
-import ValidationService from '../../../app/services/ValidationService';
+import ValidationService from '../../../app/Services/ValidationService';
 
 interface IAddEmployeePopupProps extends Omit<IPopupProps, 'children'> {}
 
